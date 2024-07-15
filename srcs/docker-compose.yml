@@ -1,0 +1,13 @@
+services:
+  nginx:
+    build: requirements/nginx/
+    ports:
+      - "6969:90"
+
+  wordpress:
+    build: requirements/wordpress
+    volumes:
+      - ./wordpress-files:/usr/share/webapps/wordpress
+
+volumes:
+  wordpress-files:
