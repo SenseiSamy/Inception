@@ -1,13 +1,21 @@
 services:
   nginx:
-    build: requirements/nginx/
+    build: ./requirements/nginx/
     ports:
       - "6969:90"
+    volumes:
+      - wordpress-data:/usr/share/nginx/html/
 
   wordpress:
-    build: requirements/wordpress
+    build: ./requirements/wordpress/
     volumes:
-      - ./wordpress-files:/usr/share/webapps/wordpress
+      - wordpress-data:/usr/share/wordpress/
+
+  mariadb:
+    build: ./requirements/mariadb/
+    volumes:
+      - mariadb-data:/var/lib/mysql/
 
 volumes:
-  wordpress-files:
+  wordpress-data:
+  mariadb-data:
