@@ -1,7 +1,33 @@
 FROM alpine:3.18
 
-RUN apk add php php-fpm
+RUN apk add --no-cache php82 \
+    php82-common \
+    php82-fpm \
+    php82-pdo \
+    php82-opcache \
+    php82-zip \
+    php82-phar \
+    php82-iconv \
+    php82-cli \
+    php82-curl \
+    php82-openssl \
+    php82-mbstring \
+    php82-tokenizer \
+    php82-fileinfo \
+    php82-json \
+    php82-xml \
+    php82-xmlwriter \
+    php82-simplexml \
+    php82-dom \
+    php82-pdo_mysql \
+    php82-pdo_sqlite \
+    php82-tokenizer \
+    php82-pecl-redis\
+	php82-mysqli \
+	curl
 
-COPY ./install_wordpress.sh /tmp/install_wordpress.sh
+RUN mkdir /code/
 
-RUN chmod +x /tmp/install_wordpress.sh && /tmp/install_wordpress.sh
+COPY ./install_wordpress.sh /code/install_wordpress.sh
+
+CMD chmod +x /code/install_wordpress.sh && /code/install_wordpress.sh

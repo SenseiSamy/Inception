@@ -1,8 +1,9 @@
 all:
-	docker compose -f srcs/docker-compose.yml up -d --build
+	docker compose -f srcs/docker-compose.yml up --build
 
-clean:
+down:
 	docker compose -f srcs/docker-compose.yml down
 
-re: clean
+re: down
+	docker volume rm srcs_mariadb-data srcs_wordpress-data
 	make all

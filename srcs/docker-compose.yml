@@ -1,5 +1,6 @@
 services:
   nginx:
+    container_name: nginx
     build: ./requirements/nginx/
     ports:
       - "6969:90"
@@ -7,14 +8,24 @@ services:
       - wordpress-data:/usr/share/nginx/html/
 
   wordpress:
+    container_name: wordpress
     build: ./requirements/wordpress/
     volumes:
       - wordpress-data:/usr/share/wordpress/
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
 
   mariadb:
+    container_name: mariadb
     build: ./requirements/mariadb/
     volumes:
       - mariadb-data:/var/lib/mysql/
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
 
 volumes:
   wordpress-data:
