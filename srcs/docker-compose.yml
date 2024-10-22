@@ -27,8 +27,8 @@ services:
       - .env
     healthcheck:
       test: ["CMD", "mariadb-check", "$MARIADB_DBNAME"]
-      interval: 1s
-      timeout: 5s
+      interval: 2s
+      timeout: 10s
       retries: 10
 
 volumes:
