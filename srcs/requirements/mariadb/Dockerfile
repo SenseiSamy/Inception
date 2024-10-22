@@ -1,6 +1,6 @@
-FROM debian:bullseye
+FROM alpine:3.18
 
-RUN apt update && apt -y install mariadb-server
+RUN apk add mariadb mariadb-client
 
 COPY ./script.sh /tmp/script.sh
 
