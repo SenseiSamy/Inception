@@ -3,15 +3,15 @@ services:
     container_name: nginx
     build: ./requirements/nginx/
     ports:
-      - "6969:90"
+      - "6969:443"
     volumes:
-      - wordpress-data:/usr/share/nginx/html/
+      - wordpress-data:/var/www/html/
 
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress/
     volumes:
-      - wordpress-data:/usr/share/wordpress/
+      - wordpress-data:/var/www/html/
     env_file:
       - .env
     depends_on:

@@ -15,4 +15,6 @@ RUN mkdir /code/
 
 COPY ./install_wordpress.sh /code/install_wordpress.sh
 
+COPY ./www.conf /etc/php82/php-fpm.d/www.conf
+
 CMD chmod +x /code/install_wordpress.sh && /code/install_wordpress.sh
