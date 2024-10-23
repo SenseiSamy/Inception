@@ -15,5 +15,9 @@ wp-cli.phar core download
 echo "creating wordpress config"
 wp-cli.phar config create --dbname=$MARIADB_DBNAME --dbuser=$MARIADB_USER --dbpass=$MARIADB_PASSWORD --dbhost=mariadb
 echo "installing wordpress config"
-wp-cli.phar core install --url=localhost --title=Inception --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL
+wp-cli.phar core install --url=wordpress --title=Inception --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL
+wp-cli.phar user create $WP_USER $WP_EMAIL --role=subscriber --user_pass=$WP_PASSWORD --allow-root
+wp-cli.phar theme install twentyfourteen --activate --allow-root
+wp-cli.phar post delete $(wp-cli.phar post list --format=ids --allow-root) --allow-root
+wp-cli.phar post create --post_type=post --post_title="This is a post" --post_content="... and its content :)" --post_status=publish --allow-root
 exec php-fpm82 -F -R

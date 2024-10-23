@@ -6,6 +6,8 @@ services:
       - "6969:443"
     volumes:
       - wordpress-data:/var/www/html/
+    depends_on:
+      - wordpress
 
   wordpress:
     container_name: wordpress
