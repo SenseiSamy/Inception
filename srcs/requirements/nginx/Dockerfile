@@ -7,6 +7,4 @@ RUN mkdir -p /etc/nginx/ssl && \
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# RUN chown -R www-data:www-data /var/www/html
-
 CMD nginx -g "daemon off;"
