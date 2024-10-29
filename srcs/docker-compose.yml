@@ -3,11 +3,12 @@ services:
     container_name: nginx
     build: ./requirements/nginx/
     ports:
-      - "6969:443"
+      - "443:443"
     volumes:
       - wordpress-data:/var/www/html/
     depends_on:
       - wordpress
+    restart: always
     networks:
       - inception
 
@@ -18,6 +19,7 @@ services:
       - wordpress-data:/var/www/html/
     env_file:
       - .env
+    restart: always
     networks:
       - inception
     depends_on:
@@ -31,6 +33,7 @@ services:
       - mariadb-data:/var/lib/mysql/
     env_file:
       - .env
+    restart: always
     networks:
       - inception
     healthcheck:
@@ -41,7 +44,17 @@ services:
 
 volumes:
   wordpress-data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/snaji/data/wordpress'
   mariadb-data:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/home/snaji/data/mariadb'
 
 networks:
   inception:
