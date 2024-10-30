@@ -1,9 +1,10 @@
 #!/bin/sh
 
+mkdir -p /run/mysqld/
+chown -R mysql:mysql /run/mysqld
+chown -R mysql:mysql /var/lib/mysql
+
 if [ ! -f /var/lib/mysql/.installed ]; then
-	mkdir -p /run/mysqld/
-	chown -R mysql:mysql /run/mysqld
-	chown -R mysql:mysql /var/lib/mysql
 	echo "Launching install script"
 	mariadb-install-db --user mysql
 	echo "Creating wordpress db and admin user"
