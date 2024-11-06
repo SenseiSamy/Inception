@@ -1,6 +1,6 @@
 all:
 	mkdir -p /home/snaji/data/wordpress/ /home/snaji/data/mariadb/
-	docker compose -f srcs/docker-compose.yml up --build
+	docker compose -f srcs/docker-compose.yml up
 
 down:
 	docker compose -f srcs/docker-compose.yml down
